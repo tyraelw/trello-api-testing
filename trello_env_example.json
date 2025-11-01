@@ -1,0 +1,23 @@
+{
+  "name": "Trello - Local Environment",
+  "values": [
+    {
+      "key": "trellokey",
+      "value": "YOUR_TRELLO_API_KEY_HERE",
+      "enabled": true
+    },
+    {
+      "key": "trellotoken",
+      "value": "YOUR_TRELLO_TOKEN_HERE",
+      "enabled": true
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://api.trello.com",
+      "enabled": true
+    }
+  ],
+  "_postman_variable_scope": "environment",
+  "_postman_exported_at": "2025-01-01T00:00:00.000Z",
+  "_postman_exported_using": "Postman/10.0.0"
+}

@@ -1,0 +1,33 @@
+# Postman Environment files with credentials
+trello-environment.json
+*-local.json
+*-private.json
+
+# Newman test results
+newman/
+testResults.html
+*.html
+
+# Node modules (if using Newman locally)
+node_modules/
+package-lock.json
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+
+# Temporary files
+*.tmp
+*.temp
