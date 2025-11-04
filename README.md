@@ -1,13 +1,12 @@
-# Trello API - Automated Testing Suite
+# 🔷 Trello API - Automated Testing Suite
 
-[![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)](https://www.postman.com/)
-[![Trello](https://img.shields.io/badge/Trello-0052CC?style=for-the-badge&logo=trello&logoColor=white)](https://trello.com/)
-[![Newman](https://img.shields.io/badge/Newman-Compatible-green?style=for-the-badge)](https://www.npmjs.com/package/newman)
+![Postman](https://img.shields.io/badge/Postman-API%20Testing-orange)
+![Trello](https://img.shields.io/badge/Trello-REST%20API-blue)
+![Newman](https://img.shields.io/badge/Newman-CLI%20Runner-green)
 
 A comprehensive API testing suite for the Trello REST API, demonstrating professional QA automation practices including CRUD operations, dynamic variable handling, and extensive test assertions.
 
 ## 📋 Table of Contents
-
 - [About](#about)
 - [Features](#features)
 - [Test Coverage](#test-coverage)
@@ -16,9 +15,10 @@ A comprehensive API testing suite for the Trello REST API, demonstrating profess
 - [Configuration](#configuration)
 - [Usage](#usage)
 - [Running with Newman](#running-with-newman)
-- [CI/CD Integration](#cicd-integration)
 - [Test Results](#test-results)
 - [Project Structure](#project-structure)
+- [Security Best Practices](#security-best-practices)
+- [Author](#author)
 
 ## 🎯 About
 
@@ -41,7 +41,7 @@ This collection demonstrates end-to-end API testing for Trello's REST API. It co
 - ✅ **Smart Board Naming** - Incremental naming to avoid conflicts (TestBoard, TestBoard_1, TestBoard_2...)
 - ✅ **Comprehensive Assertions** - Multiple validation points per endpoint
 - ✅ **Clean Code** - Well-organized and documented tests
-- ✅ **Newman Compatible** - Ready for CLI and CI/CD automation
+- ✅ **Newman Compatible** - Ready for command-line execution
 - ✅ **Security First** - No hardcoded credentials
 
 ## 🧪 Test Coverage
@@ -78,12 +78,14 @@ cd trello-api-testing
 ### 2. Import the collection into Postman
 
 **Option A: Using Postman Desktop**
+
 1. Open Postman
 2. Click "Import" button
 3. Select `trello-api-collection.json`
 4. Collection will appear in your workspace
 
 **Option B: Using Postman Web**
+
 1. Go to [Postman Web](https://web.postman.co/)
 2. Click "Import"
 3. Drag and drop `trello-api-collection.json`
@@ -99,7 +101,7 @@ cd trello-api-testing
 
 ### Step 2: Configure Variables in Postman
 
-#### Method A: Collection Variables (Recommended for local testing)
+**Method A: Collection Variables** (Recommended for local testing)
 
 1. Right-click on the collection → **Edit**
 2. Go to **Variables** tab
@@ -107,15 +109,15 @@ cd trello-api-testing
 
 | Variable | Initial Value | Current Value |
 |----------|---------------|---------------|
-| trellokey | YOUR_TRELLO_API_KEY_HERE | *your-actual-api-key* |
-| trellotoken | YOUR_TRELLO_TOKEN_HERE | *your-actual-token* |
-| baseUrl | https://api.trello.com | https://api.trello.com |
+| `trellokey` | `YOUR_TRELLO_API_KEY_HERE` | your-actual-api-key |
+| `trellotoken` | `YOUR_TRELLO_TOKEN_HERE` | your-actual-token |
+| `baseUrl` | `https://api.trello.com` | `https://api.trello.com` |
 
 4. Click **Save**
 
-> ⚠️ **Important:** Never put credentials in "Initial Value" - they will be exported!
+⚠️ **Important:** Never put credentials in "Initial Value" - they will be exported!
 
-#### Method B: Environment Variables (Recommended for teams)
+**Method B: Environment Variables** (Recommended for teams)
 
 1. Create a new Environment: **Trello - Local**
 2. Add variables:
@@ -149,7 +151,8 @@ cd trello-api-testing
 
 All tests should pass with **200 OK** status (except "Get Deleted Board" which expects **404**).
 
-Example output:
+**Example output:**
+
 ```
 ✓ Status code is 200
 ✓ Board created successfully
@@ -161,6 +164,7 @@ Example output:
 ## 📝 Testing Data
 
 This collection uses generic test data for demonstration purposes:
+
 - **Board names:** TestBoard, TestBoard_1, TestBoard_2...
 - **Card names:** Test Card
 - **List names:** TODO, DONE
@@ -196,69 +200,23 @@ newman run trello-api-collection.json \
   --reporter-html-export testResults.html
 ```
 
-## 🔄 CI/CD Integration
+### Install HTML Reporter (Optional)
 
-### GitHub Actions Example
+For enhanced HTML reports:
 
-Create `.github/workflows/api-tests.yml`:
+```bash
+npm install -g newman-reporter-htmlextra
 
-```yaml
-name: Trello API Tests
-
-on:
-  push:
-    branches: [ main, develop ]
-  pull_request:
-    branches: [ main ]
-  schedule:
-    - cron: '0 0 * * *'  # Daily at midnight
-
-jobs:
-  api-tests:
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-      
-      - name: Install Newman
-        run: npm install -g newman newman-reporter-htmlextra
-      
-      - name: Run API Tests
-        env:
-          TRELLO_KEY: ${{ secrets.TRELLO_API_KEY }}
-          TRELLO_TOKEN: ${{ secrets.TRELLO_TOKEN }}
-        run: |
-          newman run trello-api-collection.json \
-            --env-var "trellokey=$TRELLO_KEY" \
-            --env-var "trellotoken=$TRELLO_TOKEN" \
-            --reporters cli,htmlextra \
-            --reporter-htmlextra-export testResults.html
-      
-      - name: Upload Test Results
-        if: always()
-        uses: actions/upload-artifact@v3
-        with:
-          name: test-results
-          path: testResults.html
+newman run trello-api-collection.json \
+  --env-var "trellokey=YOUR_API_KEY" \
+  --env-var "trellotoken=YOUR_TOKEN" \
+  --reporters htmlextra \
+  --reporter-htmlextra-export testResults.html
 ```
-
-### Setting up Secrets
-
-1. Go to your GitHub repository
-2. Settings → Secrets and variables → Actions
-3. Add secrets:
-   - `TRELLO_API_KEY`: Your Trello API Key
-   - `TRELLO_TOKEN`: Your Trello Token
 
 ## 📊 Test Results
 
-Example successful run:
+### Example successful run:
 
 ```
 → Get all boards
@@ -303,20 +261,16 @@ trello-api-testing/
 ├── trello-api-collection.json      # Main test collection
 ├── trello-environment-example.json # Environment template
 ├── .gitignore                      # Protects credentials
-├── README.md                       # This file
-└── .github/
-    └── workflows/
-        └── api-tests.yml          # CI/CD configuration
+└── README.md                       # This file
 ```
 
 ## 🛡️ Security Best Practices
 
-- ✅ Never commit credentials to Git
-- ✅ Use environment variables for sensitive data
-- ✅ Keep "Initial Value" empty in collection variables
-- ✅ Use GitHub Secrets for CI/CD
-- ✅ Rotate API keys regularly
-- ✅ Use `.gitignore` to exclude environment files
+✅ Never commit credentials to Git  
+✅ Use environment variables for sensitive data  
+✅ Keep "Initial Value" empty in collection variables  
+✅ Rotate API keys regularly  
+✅ Use `.gitignore` to exclude environment files
 
 ## 🤝 Contributing
 
@@ -329,13 +283,21 @@ This project is open source and available under the [MIT License](LICENSE).
 ## 👤 Author
 
 **Isrrael Andres Toro Alvarez**
+
 - GitHub: [@tyraelw](https://github.com/tyraelw)
 - LinkedIn: [Isrrael Toro Alvarez](https://www.linkedin.com/in/isrrael-toro-alvarez-1019a4119/)
-- Email: tyrael78w@gmail.com
+- Email: [tyrael78w@gmail.com](mailto:tyrael78w@gmail.com)
 
 ## 📧 Contact
 
 For questions or feedback, please reach out via [tyrael78w@gmail.com](mailto:tyrael78w@gmail.com)
+
+---
+
+### Related Projects
+
+- [Cypress E-Commerce Testing](https://github.com/tyraelw/cypress-ecommerce-testing) - End-to-end UI automation with Page Object Model
+- [Simple Grocery Store API Testing](https://github.com/tyraelw/simple-grocery-store-api-testing) - E-commerce flow and order management testing
 
 ---
 
