@@ -1,6 +1,21 @@
-# Trello API - Automated Testing Suite
+# 🔷 Trello API - Automated Testing Suite
+![Postman](https://img.shields.io/badge/Postman-FF6C37?style=flat&logo=postman&logoColor=white) ![Newman](https://img.shields.io/badge/Newman-5C5C5C?style=flat&logo=postman&logoColor=white) ![REST API](https://img.shields.io/badge/REST-API-blue)
 
 A comprehensive API testing suite for the Trello REST API, demonstrating automated testing for CRUD operations, dynamic variable handling, and response validation.
+
+## 📋 Table of Contents
+- [About](#-about)
+- [Features](#-features)
+- [Test Coverage](#-test-coverage)
+- [Prerequisites](#-prerequisites)
+- [Installation](#-installation)
+- [Configuration](#-configuration)
+- [Usage](#-usage)
+- [Running with Newman](#-running-with-newman)
+- [Test Results](#-test-results)
+- [Project Structure](#-project-structure)
+- [Security](#-security-best-practices)
+- [Author](#-author)
 
 ## 🎯 About
 
@@ -18,12 +33,12 @@ This collection provides end-to-end API testing for Trello's REST API, covering 
 
 ## ✨ Features
 
-- **Complete CRUD Operations** - Full lifecycle testing
-- **Dynamic Variables** - Automatic ID passing between requests
-- **Smart Naming** - Incremental board names (TestBoard, TestBoard_1...)
-- **27 Test Assertions** - Comprehensive validation across all endpoints
-- **Newman Compatible** - Ready for CLI execution
-- **Security First** - No hardcoded credentials
+- ✅ **Complete CRUD Operations** - Full lifecycle testing
+- ✅ **Dynamic Variables** - Automatic ID passing between requests
+- ✅ **Smart Naming** - Incremental board names (TestBoard, TestBoard_1...)
+- ✅ **27 Test Assertions** - Comprehensive validation
+- ✅ **Newman Compatible** - Ready for CLI execution
+- ✅ **Security First** - No hardcoded credentials
 
 ## 🧪 Test Coverage
 
@@ -39,7 +54,7 @@ This collection provides end-to-end API testing for Trello's REST API, covering 
 | Delete Board | DELETE | 1 | Deletion success |
 | Get Deleted Board | GET | 1 | 404 error validation |
 
-**Total:** 27 automated assertions
+**Total Tests:** 27 automated assertions
 
 ## 📦 Prerequisites
 
@@ -58,11 +73,13 @@ cd trello-api-testing
 ### 2. Import to Postman
 
 **Option A: Postman Desktop**
+
 1. Open Postman
 2. Click "Import"
 3. Select `trello-api-collection.json`
 
 **Option B: Postman Web**
+
 1. Go to Postman Web
 2. Click "Import"
 3. Drag and drop `trello-api-collection.json`
@@ -78,6 +95,7 @@ cd trello-api-testing
 ### Step 2: Configure Variables
 
 **Method A: Collection Variables (Recommended)**
+
 1. Right-click collection → Edit
 2. Go to "Variables" tab
 3. Update **Current Value** column only:
@@ -91,6 +109,7 @@ cd trello-api-testing
 ⚠️ **Important:** Only edit "Current Value" - not exported with collection
 
 **Method B: Environment Variables**
+
 1. Create Environment: "Trello - Local"
 2. Add variables:
 ```json
@@ -107,12 +126,14 @@ cd trello-api-testing
 ### Running in Postman
 
 **Run Entire Collection:**
+
 1. Click collection name
 2. Click "Run" button
 3. Select all requests
 4. Click "Run Trello API"
 
 **Run Individual Request:**
+
 1. Open request
 2. Click "Send"
 3. Check "Test Results" tab
@@ -204,11 +225,11 @@ trello-api-testing/
 
 ## 🛡️ Security Best Practices
 
-✅ Never commit credentials to git  
-✅ Use environment variables  
-✅ Keep "Initial Value" empty in collection  
-✅ Use .gitignore for environment files  
-✅ Rotate API keys regularly
+- ✅ Never commit credentials to git
+- ✅ Use environment variables
+- ✅ Keep "Initial Value" empty in collection
+- ✅ Use .gitignore for environment files
+- ✅ Rotate API keys regularly
 
 ## 👤 Author
 
@@ -217,6 +238,10 @@ trello-api-testing/
 - GitHub: [@tyraelw](https://github.com/tyraelw)
 - LinkedIn: [Isrrael Toro Alvarez](https://linkedin.com/in/your-profile)
 - Email: tyrael78w@gmail.com
+
+## 📧 Contact
+
+For questions or feedback: tyrael78w@gmail.com
 
 ## 🔗 Related Projects
 
