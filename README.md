@@ -1,39 +1,12 @@
-# 🔷 Trello API - Automated Testing Suite
+# Trello API - Automated Testing Suite
 
-![Postman](https://img.shields.io/badge/Postman-Collection-orange)
-![Newman](https://img.shields.io/badge/Newman-CLI-blue)
-![REST API](https://img.shields.io/badge/REST-API-green)
-
-A comprehensive API testing suite for the Trello REST API, demonstrating QA automation fundamentals including CRUD operations, dynamic variable handling, and test assertions.
-
----
-
-## 📋 Table of Contents
-
-- [About](#about)
-- [What I Learned](#what-i-learned)
-- [Features](#features)
-- [Test Coverage](#test-coverage)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Usage](#usage)
-- [Running with Newman](#running-with-newman)
-- [Test Results](#test-results)
-- [Project Structure](#project-structure)
-- [Security](#security)
-- [Author](#author)
-
----
+A comprehensive API testing suite for the Trello REST API, demonstrating automated testing for CRUD operations, dynamic variable handling, and response validation.
 
 ## 🎯 About
 
-This collection demonstrates end-to-end API testing for Trello's REST API. It covers the complete lifecycle of board management with validation at each step.
+This collection provides end-to-end API testing for Trello's REST API, covering the complete lifecycle of board management with validation at each step.
 
-**Training Context:** Built during my 17-hour Postman course as a capstone project. This helped me understand REST API testing, dynamic variables, and test scripting.
-
-### Testing Flow:
-
+**Testing Flow:**
 1. Get all existing boards
 2. Create a new board (dynamic naming)
 3. Retrieve the created board
@@ -43,37 +16,19 @@ This collection demonstrates end-to-end API testing for Trello's REST API. It co
 7. Delete the board
 8. Verify deletion (404)
 
----
-
-## 📚 What I Learned
-
-This project taught me:
-
-✅ **REST API Concepts** - HTTP methods, status codes, request/response structure  
-✅ **CRUD Operations** - Create, Read, Update, Delete patterns  
-✅ **Dynamic Variables** - Chaining requests with automatic ID propagation  
-✅ **Test Assertions** - Multiple validation points per endpoint  
-✅ **Postman Collections** - Organizing and documenting API tests  
-✅ **Newman CLI** - Running collections from command line  
-✅ **Environment Management** - Secure credential handling  
-
----
-
 ## ✨ Features
 
-- ✅ **Complete CRUD Operations** - Full lifecycle testing
-- ✅ **Dynamic Variables** - Automatic ID passing between requests
-- ✅ **Smart Naming** - Incremental board names (TestBoard, TestBoard_1...)
-- ✅ **27 Test Assertions** - Comprehensive validation
-- ✅ **Newman Compatible** - Ready for CLI execution
-- ✅ **Security First** - No hardcoded credentials
-
----
+- **Complete CRUD Operations** - Full lifecycle testing
+- **Dynamic Variables** - Automatic ID passing between requests
+- **Smart Naming** - Incremental board names (TestBoard, TestBoard_1...)
+- **27 Test Assertions** - Comprehensive validation across all endpoints
+- **Newman Compatible** - Ready for CLI execution
+- **Security First** - No hardcoded credentials
 
 ## 🧪 Test Coverage
 
 | Endpoint | Method | Tests | Key Validations |
-|----------|--------|-------|----------------|
+|----------|--------|-------|-----------------|
 | Get All Boards | GET | 1 | Status code |
 | Create Board | POST | 7 | Name, URL, permissions, labels |
 | Get Board | GET | 1 | Board retrieval |
@@ -84,17 +39,13 @@ This project taught me:
 | Delete Board | DELETE | 1 | Deletion success |
 | Get Deleted Board | GET | 1 | 404 error validation |
 
-**Total Tests:** 27 automated assertions
-
----
+**Total:** 27 automated assertions
 
 ## 📦 Prerequisites
 
-- **Postman** (Desktop or Web)
-- **Trello Account**
-- **Trello API Key & Token**
-
----
+- Postman (Desktop or Web)
+- Trello Account
+- Trello API Key & Token
 
 ## 🚀 Installation
 
@@ -112,39 +63,34 @@ cd trello-api-testing
 3. Select `trello-api-collection.json`
 
 **Option B: Postman Web**
-1. Go to [Postman Web](https://web.postman.co)
+1. Go to Postman Web
 2. Click "Import"
 3. Drag and drop `trello-api-collection.json`
-
----
 
 ## 🔑 Configuration
 
 ### Step 1: Get Trello Credentials
-
 1. Go to https://trello.com/app-key
-2. Copy your **API Key**
-3. Click "Token" link and generate a **Token**
+2. Copy your API Key
+3. Click "Token" link and generate a Token
 4. Save both securely
 
 ### Step 2: Configure Variables
 
 **Method A: Collection Variables (Recommended)**
-
 1. Right-click collection → Edit
 2. Go to "Variables" tab
 3. Update **Current Value** column only:
 
 | Variable | Initial Value | Current Value |
 |----------|---------------|---------------|
-| `trellokey` | `YOUR_KEY_HERE` | `your-actual-key` |
-| `trellotoken` | `YOUR_TOKEN_HERE` | `your-actual-token` |
-| `baseUrl` | `https://api.trello.com` | `https://api.trello.com` |
+| trellokey | YOUR_KEY_HERE | your-actual-key |
+| trellotoken | YOUR_TOKEN_HERE | your-actual-token |
+| baseUrl | https://api.trello.com | https://api.trello.com |
 
 ⚠️ **Important:** Only edit "Current Value" - not exported with collection
 
 **Method B: Environment Variables**
-
 1. Create Environment: "Trello - Local"
 2. Add variables:
 ```json
@@ -155,8 +101,6 @@ cd trello-api-testing
 }
 ```
 3. Select environment from dropdown
-
----
 
 ## 💻 Usage
 
@@ -173,11 +117,10 @@ cd trello-api-testing
 2. Click "Send"
 3. Check "Test Results" tab
 
-### Expected Results
+**Expected Results:**  
+All tests pass with 200 OK (except "Get Deleted Board" expects 404)
 
-All tests pass with `200 OK` (except "Get Deleted Board" expects `404`).
-
-**Example output:**
+Example output:
 ```
 ✓ Status code is 200
 ✓ Board created successfully
@@ -185,8 +128,6 @@ All tests pass with `200 OK` (except "Get Deleted Board" expects `404`).
 ✓ Board has a valid URL
 ✓ Board is open (not closed)
 ```
-
----
 
 ## 🤖 Running with Newman
 
@@ -225,11 +166,9 @@ newman run trello-api-collection.json \
   --reporter-htmlextra-export report.html
 ```
 
----
-
 ## 📊 Test Results
 
-**Example successful run:**
+Example successful run:
 ```
 → Create Board
   ✓ Board created successfully
@@ -254,74 +193,36 @@ newman run trello-api-collection.json \
 └─────────────────────┴──────────┴────────┘
 ```
 
----
-
 ## 📁 Project Structure
 ```
 trello-api-testing/
 ├── trello-api-collection.json         # Main collection
 ├── trello-environment-example.json    # Template
 ├── .gitignore                         # Protects credentials
-└── README.md                          # This file
+└── README.md                          # Documentation
 ```
-
----
 
 ## 🛡️ Security Best Practices
 
 ✅ Never commit credentials to git  
 ✅ Use environment variables  
 ✅ Keep "Initial Value" empty in collection  
-✅ Use `.gitignore` for environment files  
-✅ Rotate API keys regularly  
-
----
-
-## 📚 Learning Notes
-
-### Challenges I Faced
-
-1. **Variable Chaining:** Learned to extract and pass IDs between requests
-2. **Dynamic Naming:** Implemented logic to avoid board name conflicts
-3. **Test Assertions:** Practiced writing meaningful validations
-4. **Newman Setup:** Learned CLI execution and reporting
-
-### What I'd Improve
-
-- Add more negative test cases
-- Implement data-driven testing with CSV
-- Add performance testing with Newman
-- Create more detailed HTML reports
-
----
+✅ Use .gitignore for environment files  
+✅ Rotate API keys regularly
 
 ## 👤 Author
 
 **Isrrael Andres Toro Alvarez**
 
 - GitHub: [@tyraelw](https://github.com/tyraelw)
-- LinkedIn: [Isrrael Toro Alvarez](https://www.linkedin.com/in/your-profile)
+- LinkedIn: [Isrrael Toro Alvarez](https://linkedin.com/in/your-profile)
 - Email: tyrael78w@gmail.com
-
----
-
-## 📧 Contact
-
-For questions or feedback: **tyrael78w@gmail.com**
-
----
 
 ## 🔗 Related Projects
 
-- **[Cypress E-Commerce Testing](https://github.com/tyraelw/cypress-ecommerce-testing)** - UI automation with Page Object Model
-- **[Grocery Store API](https://github.com/tyraelw/simple-grocery-store-api-testing)** - E-commerce API testing
+- [Cypress E-Commerce Testing](link) - UI automation with Page Object Model
+- [Grocery Store API](link) - E-commerce API testing
 
 ---
 
-**⭐ If this helps you learn API testing, please star it!**
-
----
-
-### 📝 Honest Disclosure
-
-This is a training project completed during my Postman course. It demonstrates API testing concepts I learned and practiced. While I'm comfortable with these fundamentals, I'm still growing as a QA engineer and excited to deepen my API testing skills in a professional setting.
+⭐ If you find this project useful, please consider giving it a star!
