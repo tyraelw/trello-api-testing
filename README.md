@@ -245,8 +245,8 @@ For questions or feedback: tyrael78w@gmail.com
 
 ## 🔗 Related Projects
 
-- [Cypress E-Commerce Testing](link) - UI automation with Page Object Model
-- [Grocery Store API](link) - E-commerce API testing
+- [Cypress E-Commerce Testing](https://github.com/tyraelw/cypress-ecommerce-testing) - UI automation with Page Object Model
+- [Grocery Store API](https://github.com/tyraelw/simple-grocery-store-api-testing) - E-commerce API testing
 
 ---
 
